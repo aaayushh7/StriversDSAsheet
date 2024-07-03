@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class LeetCode189 {
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5,6,7};
-        rotatedArray(arr,3);
+        int k = 3;
+        rotatedArray(arr,k);
         System.out.println(Arrays.toString(arr));
     }
     static void rotatedArray(int[] arr, int steps){
