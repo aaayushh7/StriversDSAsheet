@@ -9,6 +9,7 @@ public class GFG_UnionOfArrays {
         ArrayList<Integer> result = findUnion(arr1,arr2,arr1.length, arr2.length);
         System.out.println(result);
     }
+
     public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
     {
         // add your code here
