@@ -8,7 +8,6 @@ public class LeetCode1328 {
         String str = sc.next();
         String result = breakPalindrome(str);
         System.out.println(result);
-
     }
     static String breakPalindrome(String str){
         char[] ans = str.toCharArray();
@@ -24,6 +23,5 @@ public class LeetCode1328 {
         }
         ans[n-1]='b';
         return new String(ans);
-
     }
 }
