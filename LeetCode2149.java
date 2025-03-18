@@ -8,24 +8,32 @@ public class LeetCode2149 {
         int[] result = rearrangeArray(arr);
         System.out.println(Arrays.toString(result));
     }
-    static int[] rearrangeArray(int[] arr){
-        int pos = 0;
-        int neg = 1;
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]<0 && neg<arr.length){
-                int temp = arr[i];
-                arr[i] =arr[neg];
-                arr[neg]=temp;
+    public static int[] rearrangeArray(int[] nums) {
+        int pos=0,neg=1;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]<0 && i%2==0){
+                swap(nums,neg,i);
                 neg+=2;
+                pos+=2;
             }
-            if(arr[i]>0 && pos<arr.length){
-                rearrangeArray(arr);
-                int temp = arr[i];
-                arr[i] =arr[pos];
-                arr[pos]=temp;
+            else if(nums[i]>0 && i%2!=0){
+                swap(nums,pos,i);
+                neg+=2;
+                pos+=2;
+            }
+            else{
+                neg+=2;
                 pos+=2;
             }
         }
-        return arr;
+        return nums;
+    }
+    private static void swap(int[] nums, int index, int i){
+        if(index>=nums.length){
+            return;
+        }
+        int temp = nums[index];
+        nums[index] = nums[i];
+        nums[i] = temp;
     }
 }
