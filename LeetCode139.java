@@ -1,37 +1,31 @@
 package com.company;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class LeetCode139 {
     public static void main(String[] args) {
         List<String> dictionary = new LinkedList<>();
+        //boiler
         dictionary.add("i");
         dictionary.add("like");
         dictionary.add("leet");
-        dictionary.add("cod");
+        dictionary.add("code");
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
         boolean check = wordBreak(s, dictionary);
         System.out.println(check);
     }
-    private static boolean wordBreak(String s, List<String> dictionary){
-        boolean result = helperFunction(0,1, s, dictionary);;
-        return result;
-    }
-    private static boolean helperFunction(int i, int j, String s, List<String> wordDict){
-        if (j > s.length()) {
-            return false;
+    private static boolean wordBreak(String s, List<String> dict){
+        Set<String> set = new HashSet<>(dict);
+        boolean[] dp = new boolean[s.length()+1];
+        dp[0]=true;
+        for(int i = 1; i<=s.length();i++){
+            for(int j=0;j<i;j++){
+                if(dp[j] && set.contains(s.substring(j,i))){
+                    dp[i]=true;
+                }
+            }
         }
-        if(j==s.length()){
-            return wordDict.contains(s.substring(i,j));
-
-        }
-        if(wordDict.contains(s.substring(i,j))){
-            return helperFunction(j, j, s, wordDict) ||
-                    helperFunction(i, j + 1, s, wordDict);
-        }
-        return helperFunction(i,j+1,s,wordDict);
+        return dp[s.length()];
     }
 }
